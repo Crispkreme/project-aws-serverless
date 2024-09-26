@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const cartSchema = new mongoose.Schema({
+const orderedProductSchema = new mongoose.Schema({
   products: [
     {
       productId: {
@@ -13,11 +13,11 @@ const cartSchema = new mongoose.Schema({
       },
       description: {
         type: String,
-        required: [true, "Description name is required"],
+        required: [true, "Description is required"],
       },
       quantity: {
         type: Number,
-        // required: [true, "Quantity is required"]
+        required: [true, "Quantity is required"],
       },
       price: {
         type: Number,
@@ -29,12 +29,10 @@ const cartSchema = new mongoose.Schema({
       },
     },
   ],
-  orderedProducts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "OrderedProduct",
-    },
-  ],
+  totalAmount: {
+    type: Number,
+    required: [true, "Total amount is required"],
+  },
 });
 
-module.exports = mongoose.model("Cart", cartSchema);
+module.exports = mongoose.model("OrderedProduct", orderedProductSchema);
